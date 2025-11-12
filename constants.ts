@@ -1,0 +1,58 @@
+import { Product } from './types';
+
+export const PRODUCTS: Product[] = [
+  {
+    id: 1,
+    name: 'Silver Beauty Spa - Dartford',
+    price: 'Ksh 3,500',
+    imageUrl: 'https://images.pexels.com/photos/3997388/pexels-photo-3997388.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: 'Experience unparalleled luxury and nail care at our Dartford salon. Our expert technicians are dedicated to creating the perfect look for you, using only the finest products.',
+    location: 'Dartford',
+    style: 'Classic Manicure',
+  },
+  {
+    id: 2,
+    name: 'Silver Beauty Spa - Abbey Wood',
+    price: 'Ksh 3,500',
+    imageUrl: 'https://images.pexels.com/photos/8994247/pexels-photo-8994247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: 'Discover a sanctuary of style at Abbey Wood. We specialize in modern nail art, vibrant colors, and revitalizing treatments that bring out your natural beauty.',
+    location: 'Abbey Wood',
+    style: 'Modern Nail Art',
+  },
+  {
+    id: 3,
+    name: 'Silver Beauty Spa - Edmonton Green',
+    price: 'Ksh 3,500',
+    imageUrl: 'https://images.pexels.com/photos/6466293/pexels-photo-6466293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: 'Our Edmonton Green location offers a bespoke salon experience. From consultation to final polish, our team is committed to excellence and client satisfaction.',
+    location: 'Edmonton Green',
+    style: 'Bespoke Design',
+  },
+  {
+    id: 4,
+    name: 'Silver Beauty Spa - Northampton',
+    price: 'Ksh 3,500',
+    imageUrl: 'https://images.pexels.com/photos/2253830/pexels-photo-2253830.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: 'Escape to our Northampton salon for a transformative nail experience. We offer a full range of services, including gel extensions, and bridal nail styling.',
+    location: 'Northampton',
+    style: 'Bridal Nails',
+  },
+  {
+    id: 5,
+    name: 'Silver Beauty Spa - Ilford',
+    price: 'Ksh 3,500',
+    imageUrl: 'https://images.pexels.com/photos/7579831/pexels-photo-7579831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: 'The Ilford salon is a hub of creativity and luxury. Let our talented technicians craft a look that is uniquely yours, in a relaxing and sophisticated atmosphere.',
+    location: 'Ilford',
+    style: 'Luxury Pedicure',
+  },
+  {
+    id: 6,
+    name: 'Silver Beauty Spa - Harlow',
+    price: 'Ksh 3,500',
+    imageUrl: 'https://images.pexels.com/photos/5938458/pexels-photo-5938458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: 'At our Harlow location, we blend artistry with the latest techniques to deliver exceptional results. Your nail health and beauty are our top priorities.',
+    location: 'Harlow',
+    style: 'Detailed Nail Art',
+  },
+];
