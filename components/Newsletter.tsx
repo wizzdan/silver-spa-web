@@ -17,7 +17,7 @@ const Newsletter: React.FC = () => {
           />
           <button
             type="submit"
-            className="bg-brand-gold text-brand-black font-semibold py-3 px-8 rounded-full sm:rounded-r-full sm:rounded-l-none uppercase tracking-wider transition-all duration-300 hover:bg-brand-black hover:text-brand-cream"
+            className="bg-brand-gold text-brand-black font-semibold py-3 px-8 rounded-full sm:rounded-r-full sm:rounded-l-none uppercase tracking-wider transition-all duration-300 hover:bg-brand-black hover:text-brand-cream active:scale-95"
           >
             Subscribe
           </button>

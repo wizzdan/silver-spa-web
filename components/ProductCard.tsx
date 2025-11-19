@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
         <p className="text-xl text-brand-gold font-semibold mb-4">{product.price}</p>
         <button
           onClick={() => onProductClick(product)}
-          className="bg-brand-black text-brand-cream font-semibold py-2 px-6 rounded-full uppercase tracking-wider transition-all duration-300 hover:bg-brand-gold hover:text-brand-black"
+          className="bg-brand-black text-brand-cream font-semibold py-2 px-6 rounded-full uppercase tracking-wider transition-all duration-300 hover:bg-brand-gold hover:text-brand-black active:scale-95"
         >
           View Details
         </button>
