@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { SERVICE_CATEGORIES } from '../constants';
 
 // Owner's contact configuration
-const OWNER_PHONE = "254740619025"; // Format for WhatsApp link (no +)
+const OWNER_PHONE = process.env.REACT_APP_OWNER_PHONE; 
 
 const Booking: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -79,6 +78,12 @@ const Booking: React.FC = () => {
       setError("Please enter a valid Kenyan phone number (e.g., 0712345678).");
       setIsLoading(false);
       return;
+    }
+
+    if (!OWNER_PHONE) {
+        setError("Configuration Error: Contact number not set.");
+        setIsLoading(false);
+        return;
     }
 
     // --- Notification Logic ---
