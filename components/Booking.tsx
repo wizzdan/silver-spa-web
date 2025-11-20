@@ -1,8 +1,30 @@
+
 import React, { useState } from 'react';
 import { SERVICE_CATEGORIES } from '../constants';
 
-// Owner's contact configuration
-const OWNER_PHONE = process.env.REACT_APP_OWNER_PHONE; 
+// Owner's contact configuration - Read safely from Environment Variable
+// In Netlify, set REACT_APP_OWNER_PHONE in Site Settings > Environment Variables
+const getOwnerPhone = () => {
+  // Priority 1: Check for process.env (standard build/CRA)
+  if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_OWNER_PHONE) {
+    return process.env.REACT_APP_OWNER_PHONE;
+  }
+  // Priority 2: Check for import.meta.env (Vite standard)
+  try {
+    const meta = import.meta as any;
+    if (meta && meta.env && meta.env.VITE_OWNER_PHONE) {
+      return meta.env.VITE_OWNER_PHONE;
+    }
+  } catch (e) {
+    // Ignore errors if import.meta is not available
+  }
+  
+  // Fallback/Default (Optional: remove this line if you want to enforce env vars)
+  // Ideally, return an empty string to force the error check below
+  return ''; 
+};
+
+const OWNER_PHONE = getOwnerPhone();
 
 const Booking: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -81,41 +103,36 @@ const Booking: React.FC = () => {
     }
 
     if (!OWNER_PHONE) {
-        setError("Configuration Error: Contact number not set.");
+        setError("Configuration Error: Shop phone number is missing. Please contact support.");
         setIsLoading(false);
         return;
     }
 
     // --- Notification Logic ---
     
-    // 1. Prepare Data
-    const bookingData = {
-      ...formData,
-      timestamp: new Date().toISOString()
-    };
-
     try {
-      // 2. Simulate Backend API Call (In a real app, fetch('/api/bookings', ...))
+      // 1. Simulate Processing Delay for UX
       await new Promise(resolve => setTimeout(resolve, 1500));
 
-      // 3. Client-Side WhatsApp Trigger (Primary Notification)
-      // This ensures the owner gets the message even if the backend isn't running in this demo.
-      const message = `New Booking Alert – Silver Beauty Spa
+      // 2. Client-Side WhatsApp Trigger (Primary Notification)
+      // This works perfectly on Netlify without a backend
+      const message = `*New Booking Alert – Silver Beauty Spa*
 
-Service: ${formData.service}
-Date & Time: ${formData.date} at ${formData.time}
-Client Name: ${formData.name}
-Client Phone: ${formData.phone}
-Notes: ${formData.notes || 'None'}
+*Service:* ${formData.service}
+*Date:* ${formData.date}
+*Time:* ${formData.time}
+*Client:* ${formData.name}
+*Phone:* ${formData.phone}
+*Notes:* ${formData.notes || 'None'}
 
 Please confirm availability.`;
 
       const whatsappUrl = `https://wa.me/${OWNER_PHONE}?text=${encodeURIComponent(message)}`;
       
-      // Open WhatsApp in a new tab
+      // Open WhatsApp
       window.open(whatsappUrl, '_blank');
 
-      // 4. Success State
+      // 3. Success State
       setSubmitted(true);
       
     } catch (err) {
@@ -132,13 +149,13 @@ Please confirm availability.`;
           <div className="w-20 h-20 bg-brand-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-gold text-4xl border border-brand-gold">
             ✓
           </div>
-          <h2 className="text-3xl font-serif text-brand-cream mb-4">Request Sent</h2>
+          <h2 className="text-3xl font-serif text-brand-cream mb-4">Request Initiated</h2>
           <p className="text-gray-300 mb-6">
             Thank you, <span className="text-brand-gold font-semibold">{formData.name}</span>. 
           </p>
           <div className="bg-brand-black/50 p-4 rounded-sm border border-gray-800 mb-8 text-sm text-gray-400">
-            <p className="mb-2">We have opened WhatsApp to send your booking details directly to our concierge.</p>
-            <p>You will receive a confirmation via SMS to <strong>{formData.phone}</strong> once your slot is secured.</p>
+            <p className="mb-2">We have opened WhatsApp to finalize your booking with our concierge.</p>
+            <p>Please hit <strong>"Send"</strong> in WhatsApp to complete the process.</p>
           </div>
           <button 
             onClick={() => window.location.reload()} 
